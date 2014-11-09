@@ -93,7 +93,27 @@ namespace ensc251{
   }
 
   //This function returns TRUE if the input is integer literal else FALSE
- bool isFloatLiteral(const string &lexeme) 
+ bool isIntegerLiteral(const string &lexeme) 
+  {
+	  int i = 0;
+	  bool check = false;
+	  while (lexeme.at(i) == '1' || lexeme.at(i) == '2' || lexeme.at(i) == '3' || lexeme.at(i) == '4' || lexeme.at(i) == '5' || 
+			lexeme.at(i) == '6' || lexeme.at(i) == '7' || lexeme.at(i) == '8' || lexeme.at(i) == '9' || lexeme.at(i) == '0')
+	  {
+		  check = true;
+		  if (lexeme.at(i) != '1' || lexeme.at(i) != '2' || lexeme.at(i) != '3' || lexeme.at(i) != '4' || lexeme.at(i) != '5' || 
+			lexeme.at(i) != '6' || lexeme.at(i) != '7' || lexeme.at(i) != '8' || lexeme.at(i) != '9' || lexeme.at(i) != '0')
+		  {
+			  check = false;
+			  break;
+		  }
+		  i++;
+	  }
+	  return check;
+  }
+
+  //This function returns TRUE if the input is float literal else FALSE
+  bool isFloatLiteral(const string &lexeme) 
   { 
 	  bool check = false;
 	  if(isIntegerLiteral == false && lexeme.at(0) == '1' || lexeme.at(0) == '2' || lexeme.at(0) == '3' || lexeme.at(0) == '4' || lexeme.at(0) == '5' || 
@@ -105,20 +125,8 @@ namespace ensc251{
 			lexeme.at(1) == '6' || lexeme.at(1) == '7' || lexeme.at(1) == '8' || lexeme.at(1) == '9' || lexeme.at(1) == '0' )
 	   {
 		  check = true;
-	   }
+	}
 	  
-	  return check;
-  }
-
-  //This function returns TRUE if the input is float literal else FALSE
-  bool isFloatLiteral(const string &lexeme) 
-  { 
-	  bool check = false;
-	  if(isIntegerLiteral == false && lexeme.at(0) == '1' || lexeme.at(0) == '2' || lexeme.at(0) == '3' || lexeme.at(0) == '4' || lexeme.at(0) == '5' || 
-			lexeme.at(0) == '6' || lexeme.at(0) == '7' || lexeme.at(0) == '8' || lexeme.at(0) == '9' || lexeme.at(0) == '0' || lexeme.at(0) == '.')
-	  {
-		  check = true;
-	  }
 	  return check;
   }
 
