@@ -52,6 +52,7 @@ void TokenList::append(Token *token)
 	}
 	tail = token;
 	
+	setTokenClass(token);
 	return;
 }
 
@@ -97,14 +98,61 @@ void TokenList::deleteToken(Token *token)
 
 
 	//**************************************************//
-	//					DEFINE THESE					//
+	//					DEFINE THIS					//
 	//**************************************************//
 
 
 //Input: a pointer to a token
 //Output: it won't return anything, but within function, it should set the token class (i.e. token->stringType)
 //Note: one can invoke this function before adding token to the token list
-void TokenList::setTokenClass(Token *token) { }
+void TokenList::setTokenClass(Token *token) 
+{ 
+	string temp = token->getStringRep();
+	char t = temp[0];
+
+	
+	if(ensc251::isKeyword(temp))
+	{
+		token->setStringType(ensc251::T_Keyword);
+	}
+
+	else if(ensc251::isBooleanValue(temp))
+	{
+		token->setStringType(ensc251::T_Boolean);
+	}
+
+	else if(ensc251::isIntegerLiteral(temp))
+	{
+		token->setStringType(ensc251::T_IntegerLiteral);
+	}
+
+	else if(ensc251::isFloatLiteral(temp))
+	{
+		token->setStringType(ensc251::T_FloatLiteral);
+	}
+
+	else if(ensc251::isStringLiteral(temp))
+	{
+		token->setStringType(ensc251::T_StringLiteral);
+	}
+
+	else if(ensc251::isIdentifier(temp))
+	{
+		token->setStringType(ensc251::T_Identifier);
+	}
+	else if(ensc251::isOperator(temp))
+	{
+		token->setStringType(ensc251::T_Operator);
+	}
+	else if(ensc251::isPunctuator(t))
+	{
+		token->setStringType(ensc251::T_Punctuator);
+	}
+	else
+	{
+		token->setStringType(ensc251::T_Unknown);
+	}
+}
 
 //****Tokenizer class function definitions******
 
