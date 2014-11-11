@@ -95,11 +95,23 @@ namespace ensc251{
   //This function returns TRUE if the input is integer literal else FALSE
   bool isIntegerLiteral(const string &lexeme) 
   {
+	
 		bool check = false;
-		
-		for(unsigned int i = 0; i < lexeme.length(); i++)
+
+		//rudimentary check for binary or hex numbers
+		if(lexeme.length() > 1)
 		{
-			if (lexeme.at(i) >= '0' && lexeme.at(i) <='9')
+			if(lexeme.at(0) == '0' && lexeme.at(1) =='x' || lexeme.at(1) =='X' || lexeme.at(1) =='b' || lexeme.at(1) =='B')
+			{
+				check = true; 
+				return check;
+			}
+		}
+			
+		for(int i = 0; i < lexeme.length(); i++)
+		{				
+			if (lexeme.at(i) >='0' && lexeme.at(i)<='9' || lexeme.at(i)=='u' || lexeme.at(i)=='U' 
+						|| lexeme.at(i)=='l' || lexeme.at(i)=='L')
 			{
 				check = true;
 		    }
@@ -108,8 +120,8 @@ namespace ensc251{
 				check = false;
 				break;
 			}
+			
 		}
-
 	  return check;
 	}
 
